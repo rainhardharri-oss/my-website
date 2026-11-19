@@ -1,0 +1,137 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compus Bites - Products</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>🍔 Compus Bites</h1>
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="cart.html">Cart</a>
+        <a href="checkout.html">Checkout</a>
+    </nav>
+</header>
+
+<main>
+    <h2>Our Food Products</h2>
+
+    <!-- Search -->
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="Search for food..."
+        oninput="searchFood()"
+    >
+
+    <!-- Categories -->
+    <h3>Browse Food Categories</h3>
+
+    <div class="categories">
+        <button onclick="filterCategory('all')">All Food</button>
+        <button onclick="filterCategory('burger')">Burgers</button>
+        <button onclick="filterCategory('pizza')">Pizza</button>
+        <button onclick="filterCategory('snack')">Snacks</button>
+    </div>
+
+    <!-- Products -->
+    <div class="food-container" id="foodContainer">
+
+        <div class="food-card" data-category="burger">
+            <img src="images/burger.jpg" alt="Beef Burger">
+            <h3>Beef Burger</h3>
+            <p>KSh 250</p>
+            <button onclick="addToCart('Beef Burger', 250)">
+                Add to Cart
+            </button>
+        </div>
+
+        <div class="food-card" data-category="pizza">
+            <img src="images/pizza.jpg" alt="Pizza">
+            <h3>Pizza</h3>
+            <p>KSh 400</p>
+            <button onclick="addToCart('Pizza', 400)">
+                Add to Cart
+            </button>
+        </div>
+
+        <div class="food-card" data-category="snack">
+            <img src="images/chips.jpg" alt="Chips">
+            <h3>Chips</h3>
+            <p>KSh 150</p>
+            <button onclick="addToCart('Chips', 150)">
+                Add to Cart
+            </button>
+        </div>
+
+    </div>
+</main>
+
+<footer>
+    <p>&copy; 2026 Compus Bites. All rights reserved.</p>
+</footer>
+
+<script>
+
+// Add products to cart
+function addToCart(name, price) {
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    cart.push({
+        name: name,
+        price: price
+    });
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    alert(name + " added to cart!");
+}
+
+// Search food
+function searchFood() {
+    let input = document.getElementById("searchInput")
+        .value.toLowerCase();
+
+    let cards = document.getElementsByClassName("food-card");
+
+    for (let i = 0; i < cards.length; i++) {
+        let name = cards[i].querySelector("h3")
+            .innerText.toLowerCase();
+
+        cards[i].style.display =
+            name.includes(input) ? "block" : "none";
+    }
+}
+
+// Filter categories
+function filterCategory(category) {
+    let cards = document.getElementsByClassName("food-card");
+
+    for (let i = 0; i < cards.length; i++) {
+        let cardCategory = cards[i].dataset.category;
+
+        let matchesCategory =
+            category === "all" || cardCategory === category;
+
+        let searchText = document.getElementById("searchInput")
+            .value.toLowerCase();
+
+        let name = cards[i].querySelector("h3")
+            .innerText.toLowerCase();
+
+        cards[i].style.display =
+            matchesCategory && name.includes(searchText)
+            ? "block" : "none";
+    }
+}
+
+</script>
+
+</body>
+</html>

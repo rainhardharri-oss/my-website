@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compus Bites - Checkout</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>🍔 Compus Bites</h1>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="products.html">Products</a>
+        <a href="cart.html">Cart</a>
+        <a href="checkout.html">Checkout</a>
+    </nav>
+</header>
+
+<main>
+
+    <h2>Checkout</h2>
+
+    <h3>Order Summary</h3>
+
+    <div id="orderSummary"></div>
+
+    <h3 id="totalAmount">Total: KSh 0</h3>
+
+    <h3>Customer Details</h3>
+
+    <form id="checkoutForm">
+
+        <label>Full Name:</label><br>
+        <input type="text" id="customerName" required><br><br>
+
+        <label>Phone Number:</label><br>
+        <input type="tel" id="phone" required
+        pattern="[0-9]{10}" placeholder="07XXXXXXXX"><br><br>
+
+        <label>Delivery Location:</label><br>
+        <input type="text" id="location" required><br><br>
+
+        <button type="submit">Place Order</button>
+
+    </form>
+
+</main>
+
+<footer>
+    <p>&copy; 2026 Compus Bites. All rights reserved.</p>
+</footer>
+
+<script>
+
+function displayOrder() {
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    let total = 0;
+
+    let summary = document.getElementById("orderSummary");
+
+    summary.innerHTML = "";
+
+    if (cart.length === 0) {
+        summary.innerHTML = "<p>Your cart is empty. Please add food first.</p>";
+    }
+
+    cart.forEach(item => {
+
+        total += item.price;
+
+        summary.innerHTML += `
+            <p>${item.name} - KSh ${item.price}</p>
+        `;
+
+    });
+
+    document.getElementById("totalAmount").innerText =
+        "Total: KSh " + total;
+
+}
+
+document.getElementById("checkoutForm").addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    if (cart.length === 0) {
+        alert("Your cart is empty!");
+        return;
+    }
+
+    let order = {
+        customer: document.getElementById("customerName").value,
+        phone: document.getElementById("phone").value,
+        location: document.getElementById("location").value,
+        items: cart,
+        total: cart.reduce((sum, item) => sum + item.price, 0),
+        date: new Date().toLocaleString()
+    };
+
+    let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+    orders.push(order);
+
+    localStorage.setItem("orders", JSON.stringify(orders));
+
+    localStorage.removeItem("cart");
+
+    alert("Order placed successfully! Thank you for choosing Compus Bites.");
+
+    window.location.href = "index.html";
+
+});
+
+displayOrder();
+
+</script>
+
+</body>
+</html>

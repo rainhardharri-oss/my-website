@@ -1,0 +1,206 @@
+/* GENERAL SETTINGS */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7f2;
+    color: #26332b;
+}
+
+/* HEADER */
+header {
+    background: #123d2a;
+    color: white;
+    text-align: center;
+    padding: 25px 15px;
+}
+
+header h1 {
+    font-size: 32px;
+    margin: 0 0 10px;
+}
+
+header p {
+    margin: 5px;
+}
+
+/* NAVIGATION */
+nav {
+    margin-top: 18px;
+}
+
+nav a {
+    color: white;
+    margin: 10px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover {
+    color: #f4c95d;
+}
+
+/* MAIN CONTENT */
+main {
+    padding: 30px 20px;
+    max-width: 1100px;
+    margin: auto;
+}
+
+/* HEADINGS */
+h2 {
+    text-align: center;
+    color: #123d2a;
+    margin-bottom: 25px;
+}
+
+/* WELCOME SECTION */
+.welcome {
+    text-align: center;
+    padding: 45px 15px;
+    background: #e2eee5;
+    border-radius: 12px;
+    margin-bottom: 35px;
+}
+
+.welcome h2 {
+    font-size: 28px;
+}
+
+.welcome p {
+    font-size: 17px;
+}
+
+/* FOOD CONTAINER */
+.food-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 25px;
+}
+
+/* FOOD CARDS */
+.food-card {
+    background: white;
+    width: 280px;
+    padding: 18px;
+    border-radius: 14px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.10);
+    margin: 10px;
+}
+
+.food-card img {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.food-card h3 {
+    color: #123d2a;
+}
+
+/* PRICES */
+.price {
+    color: #167344;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+/* BUTTONS */
+button,
+.order-button {
+    background: #167344;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 7px;
+    cursor: pointer;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+}
+
+button:hover,
+.order-button:hover {
+    background: #0d4d2d;
+}
+
+/* SEARCH INPUT */
+input {
+    padding: 12px;
+    width: 100%;
+    max-width: 350px;
+    border: 1px solid #bbb;
+    border-radius: 6px;
+    margin-top: 5px;
+}
+
+/* CATEGORIES */
+.categories {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.categories button {
+    margin: 5px;
+}
+
+/* CART */
+#cartItems {
+    margin: 20px 0;
+}
+
+#cartTotal,
+#totalAmount {
+    color: #167344;
+    font-weight: bold;
+}
+
+/* CHECKOUT FORM */
+form {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    max-width: 450px;
+    margin: 20px auto;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.10);
+}
+
+form input {
+    max-width: 100%;
+}
+
+/* FOOTER */
+footer {
+    background: #123d2a;
+    color: white;
+    text-align: center;
+    padding: 18px;
+    margin-top: 40px;
+}
+
+/* MOBILE RESPONSIVENESS */
+@media (max-width: 600px) {
+
+    nav a {
+        display: inline-block;
+        margin: 7px;
+    }
+
+    .food-card {
+        width: 100%;
+    }
+
+    .welcome h2 {
+        font-size: 23px;
+    }
+
+    main {
+        padding: 20px 12px;
+    }
+}

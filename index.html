@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compus Bites - Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>🍔 Compus Bites</h1>
+        <p>Delicious food, right on campus!</p>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="products.html">Products</a>
+            <a href="cart.html">Cart (<span id="cartCount">0</span>)</a>
+            <a href="checkout.html">Checkout</a>
+        </nav>
+    </header>
+
+    <!-- Welcome Section -->
+    <main>
+        <section class="welcome">
+            <h2>Welcome to Compus Bites!</h2>
+            <p>Your favourite campus meals, all in one place.</p>
+            <a class="order-button" href="products.html">
+                Explore Our Menu
+            </a>
+        </section>
+
+        <!-- Popular Meals -->
+        <section id="menu">
+            <h2>Our Popular Meals</h2>
+
+            <div class="food-container">
+
+                <div class="food-card">
+                    <img src="images/burger.jpg" alt="Beef Burger">
+                    <h3>Beef Burger</h3>
+                    <p>Juicy beef burger with fresh vegetables.</p>
+                    <p class="price">KSh 250</p>
+                    <button onclick="addToCart('Beef Burger', 250)">
+                        Add to Cart
+                    </button>
+                </div>
+
+                <div class="food-card">
+                    <img src="images/pizza.jpg" alt="Pizza">
+                    <h3>Pizza</h3>
+                    <p>Delicious pizza for your lunch break.</p>
+                    <p class="price">KSh 400</p>
+                    <button onclick="addToCart('Pizza', 400)">
+                        Add to Cart
+                    </button>
+                </div>
+
+                <div class="food-card">
+                    <img src="images/chips.jpg" alt="Chips">
+                    <h3>Chips</h3>
+                    <p>Crispy chips to enjoy anytime.</p>
+                    <p class="price">KSh 150</p>
+                    <button onclick="addToCart('Chips', 150)">
+                        Add to Cart
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section id="contact">
+            <h2>Contact Us</h2>
+            <p>Hungry? We are ready to serve you!</p>
+            <p>Welcome to affordable campus dining.</p>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Compus Bites. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function addToCart(name, price) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+            cart.push({
+                name: name,
+                price: price
+            });
+
+            localStorage.setItem("cart", JSON.stringify(cart));
+
+            updateCartCount();
+
+            alert(name + " added to cart!");
+        }
+
+        function updateCartCount() {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+            document.getElementById("cartCount").innerText = cart.length;
+        }
+
+        updateCartCount();
+    </script>
+
+</body>
+</html>
